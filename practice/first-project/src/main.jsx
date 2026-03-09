@@ -1,19 +1,25 @@
 import { createRoot } from "react-dom/client"
+
+
 import "./index.css"
+
+import Header from "./Header.jsx"
+import  Footer  from "./Footer.jsx";
+import  Main  from "./contentMain.jsx"
+
 const root = createRoot(document.getElementById("root"));
 
+function Page() {
+  return (
+    <>
+      <Header />
+      <Main />
+      <Footer />
+    </>
+  )
+}
+
 root.render(
-
-  <main>
-    <img src="/src/assets/React.svg" alt="image_here" />
-    <h2>Fun facts about React</h2>
-    <ul>
-      <li>Was first released in 2013</li>
-      <li>Was originally created by Jordan Walke</li>
-      <li>Has well over 100K stars on GitHub</li>
-      <li>Is maintained by meta</li>
-      <li>Powers thousands of enterprise app,including mobile apps</li>
-    </ul>
-  </main>
-
+  <Page />
 )
+
