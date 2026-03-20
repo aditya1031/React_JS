@@ -11,7 +11,7 @@ export default function App() {
           return (
                <Entry
                     key={entry.id}
-                    entry={entry}
+                    {...entry}
                     // img={entry.img}
                     // title={entry.title}
                     // country={entry.country}
