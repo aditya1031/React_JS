@@ -1,3 +1,4 @@
+import React from 'react'
 import Contact from './Contact'
 
 import Jokes from './jokes'
@@ -106,17 +107,93 @@ import Jokes from './jokes'
 
 import jokesData from './jokesData'
 
-export default function App() {
-  const jokesElement = jokesData.map((joke) => {
-    return (<Jokes
-      setup={joke.setup}
-      punchline={joke.punchline}
-    />)
-  });
+// export default function App() {
+//   const jokesElement = jokesData.map((joke) => {
+//     return (<Jokes
+//       key={joke.key}
+//       setup={joke.setup}
+//       punchline={joke.punchline}
+//       upVotes={joke.upVotes}
+//       downVotes={joke.downVotes}
+//       isPun={joke.isPun}
+//       comments={joke.comments}
+//     />)
+//   });
+//   return (
+//     <>
+//       {jokesElement}
+//     </>
+//   )
+
+// }
+
+
+function App() {
+  const [messages, setMessages] = React.useState([])
+
+  // let head = false;
+
+  // if (unreadMessages.length > 0) {
+  //   head = true;
+  // }
+
+
+  // let text = `you have ${messages.length} unread messages`;
+  // if (messages.length === 0) {
+  //   text = "you are all caught up"
+  // }
+  // else if (messages.length === 1) {
+  //   text = "you have 1 unread message"
+  // }
+
+  function determineText() {
+    if (messages.length === 0) {
+      return "you are all caught up"
+    }
+    else if (messages.length === 1) {
+      return "you have 1 unread message"
+    }
+    else {
+      return `you have ${messages.length} unread messages`;
+    }
+  }
+
   return (
+    // <>
+    //   {unreadMessages.length > 1 && <h1>you have {unreadMessages.length} unread messages! </h1>}
+
+    //   {
+    //     unreadMessages.length === 1 && <h1>You have 1 unread messages</h1>
+    //   }
+
+    //   {
+    //     unreadMessages.length === 0 && <h1>You are all cought up</h1>
+    //   }
+
+    // </>
+
     <>
-      {jokesElement}
+      <h1>{determineText()}</h1>
     </>
   )
-
 }
+
+export default App
+
+
+
+/*
+
+1.    what is  "conditional rendering"?
+ans.  It is a way to show any element on the web page based on the predefined condition or logic  , it i s use to trigger the render for element only when the condition is true
+
+2.    when would you use && ?
+ans.  when i only need to simple hide or show a particular element on page 
+
+3.    when would you use ternary ?
+ans.  when i need to change the element value on the page in one or other way
+
+4.    what if you need to decide between >2 options on what to display?
+ans.  there are multiple ways like nested ternary,multiple && or a separate function the set the element value 
+
+*/
