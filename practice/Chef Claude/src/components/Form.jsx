@@ -1,27 +1,29 @@
 import { useState } from "react";
 // import Recipe from "./Recipe";
 
+import IngredientsList from "./IngredientsList";
+import Recipe from "./Recipe";
+
+import { getRecipeFromMistral } from "./ai";
 
 export default function Form() {
 
-     const [ingredients, setIngredients] = useState(["dahi","banana","cream","milk"]);
+     const [ingredients, setIngredients] = useState([
+          
+     ]);
 
-     const [recipeShown, setRecipe] = useState(false);
-
-     const ingredientsListItem = ingredients.map((ingredient) =>
-          <li key={ingredient}>
-               {ingredient}
-          </li>
-     )
+     const [recipe, setRecipe] = useState("");
 
      function addIngredient(formData) {
           const newIngredient = formData.get("ingredient");
           setIngredients(ingredients => [...ingredients, newIngredient]);
      }
 
-     function getRecipe() {
-          setRecipe(prevRecipe => !prevRecipe);
+     async function getRecipe() {
+          const recipeMarkdown = await getRecipeFromMistral(ingredients);
+          setRecipe(recipeMarkdown);
      }
+
 
      return (
           <main>
@@ -40,20 +42,14 @@ export default function Form() {
                     </button>
                </form>
 
-               {ingredients.length > 0 && <section >
-                    <h2>Ingredient on hand : </h2>
-                    <ul className="ingredients-list" aria-live="polite">{ingredientsListItem}</ul>
-                    {ingredients.length > 3 && <div className="get-recipe-container">
-                         <div>
-                              <h3>Ready for a recipe?</h3>
-                              <p>Generate a recipe from you given list of ingredient.</p>
-                         </div>
-                         <button onClick={getRecipe} >Get a recipe</button>
-                    </div>}
-               </section>}
+               {ingredients.length > 0 &&
+                    <IngredientsList
+                         ingredients={ingredients}
+                         getRecipe={getRecipe}
+                    />}
 
-               {/* {recipeShown && Recipe} */}
-
+               {recipe && <Recipe
+                    recipe={recipe} />}
 
           </main>
      )

@@ -4,23 +4,15 @@ function App() {
 
   const [myFavoriteThings, setFavoriteThings] = React.useState([]);
 
-const favThings = [
-  "dahi 🥣",
-  "milk 🥛",
-  "butter 🧈",
-  "chach 🥤",
-  "mistidhoi 🍮",
-  "paneer 🧀",
-  "ghee 🫙",
-  "lassi 🥛",
-  "cheese 🧀",
-  "ice cream 🍨",
-  "rabri 🍮",
-  "kheer 🍚",
-  "kulfi 🍦",
-  "shrikhand 🥣",
-  "buttermilk 🥤"
-]
+  const favThings = [
+    "paneer 🧀",
+    "cheese 🧀",
+    "ice cream 🍨",
+    "rabri 🍮",
+    "kheer 🍚",
+    "kulfi 🍦",
+
+  ]
 
   const thingsElements = myFavoriteThings.map(thing => <p key={thing}>{thing}</p>);
 
@@ -31,7 +23,7 @@ const favThings = [
   return (
     <>
       <button onClick={addFavoriteThings}>Add item</button>
-      <section> 
+      <section>
         {thingsElements}
       </section>
     </>
